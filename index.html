@@ -23,6 +23,40 @@
       getRecipe(cocktailName);
     });
 
+    async function getRecipe(cocktailName) {
+      try {
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailName}`);
+        const data = await response.json();
+
+        if (data.drinks) {
+          const cocktail = data.drinks[0];
+          displayRecipe(cocktail);
+        } else {
+          displayError('Cocktail not found.');
+        }
+      } catch (error) {
+        displayError('Error fetching data.');
+      }
+    }
+
+    function displayRecipe(cocktail) {
+      const recipeContainer = document.getElementById('recipeContainer');
+      recipeContainer.innerHTML = `
+        <h2>${cocktail.strDrink}</h2>
+        <p><strong>Ingredients:</strong></p>
+        <ul>
+          <li>${cocktail.strIngredient1} - ${cocktail.strMeasure1}</li>
+          <!-- Add more ingredients and measures as needed -->
+        </ul>
+        <p><strong>Instructions:</strong> ${cocktail.strInstructions}</p>
+        <img src="${cocktail.strDrinkThumb}" alt="${cocktail.strDrink}">
+      `;
+    }
+
+    function displayError(message) {
+      const recipeContainer = document.getElementById('recipeContainer');
+      recipeContainer.innerHTML = `<p>${message}</p>`;
+    }
   </script>
 </body>
 </html>
