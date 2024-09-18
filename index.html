@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap">
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cocktail Recipe Generator</title>
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1 class="happy-hour-title">Happy Hour</h1>
+  <h1 class="happy-hour-title">It's Happy Hour!</h1>
+  
   <form id="cocktailForm">
-    <label for="cocktailName">What would you like to drink today?</label><br>
+    <label for="cocktailName">What are you craving tonight?</label><br>
     <input type="text" id="cocktailName" required><br>
-    <br><button type="submit">Get The Recipe</button>
+    <br><button type="submit">Let's Drink</button>
   </form>
 
   <div id="recipeContainer" style="display:none;"></div>
@@ -36,12 +39,12 @@
         if (data.drinks) {
           const cocktail = data.drinks[0];
           displayRecipe(cocktail);
-          findNearbyBars(cocktail.strDrink);
+          findNearbyBars(cocktail.strDrink); 
         } else {
-          displayError('Cocktail not found.');
+          displayError('Cocktail not found.', false); 
         }
       } catch (error) {
-        displayError('Error fetching data.');
+        displayError('Error fetching data.', false);
       }
     }
 
@@ -50,23 +53,25 @@
       recipeContainer.style.display = 'block'; 
       recipeContainer.innerHTML = `
         <h2>${cocktail.strDrink}</h2>
-        <p><strong>Ingredients:</strong></p>
+        <p><strong>The Barista's Toolbox:</strong></p>
         <ul>
           <li>${cocktail.strIngredient1} - ${cocktail.strMeasure1}</li>
-          <!-- Add more ingredients and measures as needed -->
         </ul>
-        <p><strong>Instructions:</strong> ${cocktail.strInstructions}</p>
+        <p><strong>Concoct Like a Pro:</strong> ${cocktail.strInstructions}</p>
         <img src="${cocktail.strDrinkThumb}" alt="${cocktail.strDrink}">
       `;
     }
 
-    function displayError(message) {
-      const recipeContainer = document.getElementById('recipeContainer');
-      recipeContainer.style.display = 'block'; 
-      recipeContainer.innerHTML = `<p>${message}</p>`;
-      document.getElementById('barsContainer').style.display = 'none';
-    }
+    function displayError(message, hideRecipe = true) {
+      const barsContainer = document.getElementById('barsContainer');
+      barsContainer.style.display = 'block'; 
+      barsContainer.innerHTML = `<p>${message}</p>`;
 
+      if (hideRecipe) {
+        const recipeContainer = document.getElementById('recipeContainer');
+        recipeContainer.style.display = 'none'; 
+      }
+    }
 
     function findNearbyBars(cocktailName) {
       if (navigator.geolocation) {
@@ -86,14 +91,14 @@
             if (status === google.maps.places.PlacesServiceStatus.OK) {
               displayBars(results);
             } else {
-              displayError('No bars found nearby.');
+              displayError('Bad Luck! No bars found nearby', false);
             }
           });
         }, () => {
-          displayError('Geolocation not supported or permission denied.');
+          displayError('Geolocation not supported or permission denied.', false);
         });
       } else {
-        displayError('Geolocation not supported by this browser.');
+        displayError('Geolocation not supported by this browser.', false);
       }
     }
 

@@ -1,11 +1,11 @@
-body, h1, h2, ul, p, img {
+body, h1, h2, ul, p, img, label, input, button, strong, li {
   margin: 0;
   padding: 0;
+  font-family: "Gowun Batang", serif;
+  line-height: 1.6;
 }
 
 body {
-  font-family: "Gowun Batang", serif;
-  line-height: 1.6;
   background-color: #ecf0f1;
   color: #000;
   background-image: url('assets/barbgimg.jpg');
@@ -16,7 +16,6 @@ body {
 }
 
 form {
-  font-family: "Gowun Batang", serif;
   max-width: 800px;
   margin: 50px auto 80px; 
   padding: 60px;
@@ -27,38 +26,22 @@ form {
 }
 
 h1 {
-  font-family: "Gowun Batang", serif;
   font-size: 54px;
   font-weight: bold;
   color: #e74c3c;
   text-align: center;
   margin-bottom: 20px;
 }
-
 label {
-  font-family: "Gowun Batang", serif;
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
   color: #000;
   font-size: 32px;
   text-align: center;
-  font-family: 'Pacifico', cursive;
-}
-
-input {
-  font-family: "Gowun Batang", serif;
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 16px;
-  box-sizing: border-box;
-  border: 2px solid #7E200C;
-  border-radius: 4px;
-  box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
 }
 
 button {
-  font-family: "Gowun Batang", serif;
   display: block;
   margin: 0 auto;
   background-color: #000;
@@ -68,7 +51,6 @@ button {
   border-radius: 4px;
   cursor: pointer;
   font-size: 21px;
-  font-family: 'Pacifico', cursive;
   box-shadow: 0 0 14px rgba(255, 0, 0, 0.5);
 }
 
@@ -76,8 +58,17 @@ button:hover {
   background-color: #000;
 }
 
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  border: 2px solid #7E200C;
+  border-radius: 4px;
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+}
+
 #recipeContainer, #barsContainer {
-  font-family: "Gowun Batang", serif;
   max-width: 800px;
   margin: 50px auto;
   padding: 20px;
@@ -89,7 +80,6 @@ button:hover {
 }
 
 .happy-hour-title {
-  font-family: "Gowun Batang", serif;
   font-size: 75px;
   font-weight: bold;
   color: #7E200C;
@@ -99,27 +89,23 @@ button:hover {
 }
 
 h2 {
-  font-family: "Gowun Batang", serif;
   font-size: 45px;
   color: #000; 
   text-align: center;
 }
 
 ul {
-  font-family: "Gowun Batang", serif;
   list-style-type: none;
   padding: 0;
   font-size: 25px;
 }
 
 li {
-  font-family: "Gowun Batang", serif;
   margin-bottom: 8px;
   font-size: 25px;
 }
 
 strong {
-  font-family: "Gowun Batang", serif;
   font-weight: bold;
   font-size: 35px;
 }
@@ -139,4 +125,3 @@ img {
     max-width: 100%;
   }
 }
-
