@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cocktail Recipe Generator</title>
@@ -14,7 +15,11 @@
     <input type="text" id="cocktailName" required><br>
     <br><button type="submit">Get The Recipe</button>
   </form>
-  <div id="recipeContainer"></div>
+
+  <div id="recipeContainer" style="display:none;"></div>
+  <div id="barsContainer" style="display:none;"></div>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtZ_AIsVRlUT-yMYbuRlmrbidMZh_h4Sw&libraries=places"></script>
 
   <script>
     document.getElementById('cocktailForm').addEventListener('submit', function(event) {
@@ -31,6 +36,7 @@
         if (data.drinks) {
           const cocktail = data.drinks[0];
           displayRecipe(cocktail);
+          findNearbyBars(cocktail.strDrink);
         } else {
           displayError('Cocktail not found.');
         }
@@ -41,6 +47,7 @@
 
     function displayRecipe(cocktail) {
       const recipeContainer = document.getElementById('recipeContainer');
+      recipeContainer.style.display = 'block'; 
       recipeContainer.innerHTML = `
         <h2>${cocktail.strDrink}</h2>
         <p><strong>Ingredients:</strong></p>
@@ -55,7 +62,57 @@
 
     function displayError(message) {
       const recipeContainer = document.getElementById('recipeContainer');
+      recipeContainer.style.display = 'block'; 
       recipeContainer.innerHTML = `<p>${message}</p>`;
+      document.getElementById('barsContainer').style.display = 'none';
+    }
+
+
+    function findNearbyBars(cocktailName) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          const { latitude, longitude } = position.coords;
+          const location = new google.maps.LatLng(latitude, longitude);
+
+          const service = new google.maps.places.PlacesService(document.createElement('div'));
+          const request = {
+            location: location,
+            radius: '5000',
+            keyword: cocktailName + ' bar',
+            type: ['bar'],
+          };
+
+          service.nearbySearch(request, function(results, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+              displayBars(results);
+            } else {
+              displayError('No bars found nearby.');
+            }
+          });
+        }, () => {
+          displayError('Geolocation not supported or permission denied.');
+        });
+      } else {
+        displayError('Geolocation not supported by this browser.');
+      }
+    }
+
+    function displayBars(bars) {
+      const barsContainer = document.getElementById('barsContainer');
+      barsContainer.style.display = 'block';
+      barsContainer.innerHTML = '<h2>Nearby Bars</h2><ul>';
+
+      bars.forEach(bar => {
+        barsContainer.innerHTML += `
+          <li>
+            <strong>${bar.name}</strong><br>
+            Address: ${bar.vicinity}<br>
+            Rating: ${bar.rating || 'N/A'}
+          </li>
+        `;
+      });
+
+      barsContainer.innerHTML += '</ul>';
     }
   </script>
 </body>

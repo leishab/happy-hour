@@ -4,7 +4,7 @@ body, h1, h2, ul, p, img {
 }
 
 body {
-  font-family: 'Pacifico', sans-serif;
+  font-family: "Gowun Batang", serif;
   line-height: 1.6;
   background-color: #ecf0f1;
   color: #000;
@@ -15,8 +15,8 @@ body {
   overflow-y: auto;
 }
 
-
 form {
+  font-family: "Gowun Batang", serif;
   max-width: 800px;
   margin: 50px auto 80px; 
   padding: 60px;
@@ -27,6 +27,7 @@ form {
 }
 
 h1 {
+  font-family: "Gowun Batang", serif;
   font-size: 54px;
   font-weight: bold;
   color: #e74c3c;
@@ -35,6 +36,7 @@ h1 {
 }
 
 label {
+  font-family: "Gowun Batang", serif;
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
@@ -45,6 +47,7 @@ label {
 }
 
 input {
+  font-family: "Gowun Batang", serif;
   width: 100%;
   padding: 12px;
   margin-bottom: 16px;
@@ -55,6 +58,7 @@ input {
 }
 
 button {
+  font-family: "Gowun Batang", serif;
   display: block;
   margin: 0 auto;
   background-color: #000;
@@ -72,8 +76,8 @@ button:hover {
   background-color: #000;
 }
 
-
-#recipeContainer {
+#recipeContainer, #barsContainer {
+  font-family: "Gowun Batang", serif;
   max-width: 800px;
   margin: 50px auto;
   padding: 20px;
@@ -82,11 +86,11 @@ button:hover {
   background-color: #7E200C;
   box-shadow: 0 0 17px rgba(255, 0, 0, 0.5);
   font-size: 23px;
-  
 }
 
 .happy-hour-title {
-  font-size: 75px; 
+  font-family: "Gowun Batang", serif;
+  font-size: 75px;
   font-weight: bold;
   color: #7E200C;
   text-align: center;
@@ -95,41 +99,44 @@ button:hover {
 }
 
 h2 {
+  font-family: "Gowun Batang", serif;
   font-size: 45px;
   color: #000; 
   text-align: center;
 }
 
 ul {
+  font-family: "Gowun Batang", serif;
   list-style-type: none;
   padding: 0;
   font-size: 25px;
 }
 
 li {
+  font-family: "Gowun Batang", serif;
   margin-bottom: 8px;
   font-size: 25px;
-
 }
 
 strong {
+  font-family: "Gowun Batang", serif;
   font-weight: bold;
   font-size: 35px;
 }
 
 img {
   display: block;
-  margin: 16px auto; 
+  margin: 16px auto;
   max-width: 100%;
   height: auto;
   border: 7px solid #000;
   border-radius: 4px;
-  box-shadow: 0 0 14px rgba(255, 0, 0, 0.5); 
+  box-shadow: 0 0 14px rgba(255, 0, 0, 0.5);
 }
 
-
 @media screen and (max-width: 600px) {
-  form, #recipeContainer {
+  form, #recipeContainer, #barsContainer {
     max-width: 100%;
   }
 }
+
